@@ -60,4 +60,12 @@ document.getElementById("add-details-btn").addEventListener("click", function ()
     td1.innerText = itemPriceInputValue;
     td2.innerText = itemQuantityInputValue;
     td3.innerText = totalPrice;
+
+    // we create a table using createElement but we don't send the data on the table.. table row er moddhe td data send kore dilam
+    tr.appendChild(th);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+
+    infoTable.appendChild(tr);
 })
