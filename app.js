@@ -61,6 +61,9 @@ document.getElementById("add-details-btn").addEventListener("click", function ()
     td2.innerText = itemQuantityInputValue;
     td3.innerText = totalPrice;
 
+    // set a a class name in Total with dynamic way
+    td3.classList.add('item-total');
+
     // we create a table using createElement but we don't send the data on the table.. table row er moddhe td data send kore dilam
     tr.appendChild(th);
     tr.appendChild(td1);
@@ -68,4 +71,35 @@ document.getElementById("add-details-btn").addEventListener("click", function ()
     tr.appendChild(td3);
 
     infoTable.appendChild(tr);
+
+    totalCalculation(); // calling the main function
 })
+
+// main function for totally calculation
+function totalCalculation(){
+    const subTotal = calculateSubTotal();
+    const subTotalDisplay = document.getElementById("sub-total");
+    subTotalDisplay.innerText = subTotal;
+
+    const calculateTax = subTotal * 0.2;
+
+    document.getElementById("tax").innerText = calculateTax;
+
+    document.getElementById("grand-total").innerText = subTotal + calculateTax;
+    document.getElementById("grand-total-2").innerText = subTotal + calculateTax;
+}
+
+
+// ei function ta clear na temon
+function calculateSubTotal (){
+    let subTotal = 0;
+    const cost = document.getElementsByClassName('item-total');
+    // console.log('all prices ', cost);
+    for (let i = 0; i < cost.length; i++) {
+        const element = cost[i];
+        const price = parseInt(element.innerText);
+        subTotal = subTotal + price;
+    }
+    return subTotal;
+}
+
